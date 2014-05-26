@@ -16,7 +16,7 @@ source :git => 'https://github.com/madebyhiro/codem-schedule.git'
 build do
   command "bundle install --without development test --path=#{install_dir}/embedded/service ", :env => env
 
-  command "mkdir -p #{install_dir}/embedded/service/codem-scheduler"
-  command "#{install_dir}/embedded/bin/rsync -a --delete --exclude=.git/*** --exclude=.gitignore ./ #{install_dir}/embedded/service/codem-scheduler/"
+  command "mkdir -p #{install_dir}/codem-scheduler"
+  command "#{install_dir}/embedded/bin/rsync -a --delete --exclude=.git/*** --exclude=.gitignore ./ #{install_dir}/codem-scheduler/"
 end
 
