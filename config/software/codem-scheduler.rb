@@ -2,6 +2,7 @@ name "codem-scheduler"
 default_version "f9340d57450c04340e64d47f7c75335e45e80f08"
 
 dependency "ruby"
+dependency "rubygems"
 dependency "bundler"
 dependency "rsync"
 
@@ -14,9 +15,11 @@ env = {
 source :git => 'https://github.com/madebyhiro/codem-schedule.git'
 
 build do
-  command "bundle install --without development test --path=#{install_dir}/embedded/service ", :env => env
+  scheduler_dir = "#{install_dir}/codem-scheduler/"
 
-  command "mkdir -p #{install_dir}/codem-scheduler"
-  command "#{install_dir}/embedded/bin/rsync -a --delete --exclude=.git/*** --exclude=.gitignore ./ #{install_dir}/codem-scheduler/"
+  command "mkdir -p #{scheduler_dir}"
+  command "#{install_dir}/embedded/bin/rsync -a --delete --exclude=.git/*** --exclude=.gitignore ./ #{scheduler_dir}"
+
+  bundle "install --binstubs --without development test --path vendor/bundle", :env => env
 end
 
