@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export PATH=<%= install_dir %>/bin:<%= install_dir %>/embedded/bin:$PATH
+
+# default to RAILS_ENV=production
+if [[ -z $RAILS_ENV ]]; then
+  export RAILS_ENV=production
+fi
+
+cd <%= install_dir %>/codem-scheduler
+<%= install_dir %>/embedded/bin/bundle exec <%= command %>
+
