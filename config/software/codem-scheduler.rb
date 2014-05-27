@@ -4,6 +4,10 @@ default_version "f9340d57450c04340e64d47f7c75335e45e80f08"
 dependency "ruby"
 dependency "rubygems"
 dependency "bundler"
+dependency "libxml2"
+dependency "libxslt"
+dependency "openssl"
+dependency "mysql-client"
 dependency "rsync"
 
 env = {
@@ -15,11 +19,30 @@ env = {
 source :git => 'https://github.com/madebyhiro/codem-schedule.git'
 
 build do
-  scheduler_dir = "#{install_dir}/codem-scheduler/"
+  scheduler_dir = "#{install_dir}/codem-scheduler"
 
+  # Install gems without dev and test
+  bundle "config build.nokogiri --with-xml2-lib=#{install_dir}/embedded/lib"
+  bundle "config build.nokogiri --with-xml2-include=#{install_dir}/embedded/include"
+  bundle "config build.nokogiri --with-xslt-lib=#{install_dir}/embedded/lib"
+  bundle "config build.nokogiri --with-xslt-include=#{install_dir}/embedded/include"
+
+  bundle "install --binstubs --without development test --path=#{install_dir}/embedded/service/gem", :env => env
+
+  # Generate destination and copy the actual code to the correct location
   command "mkdir -p #{scheduler_dir}"
   command "#{install_dir}/embedded/bin/rsync -a --delete --exclude=.git/*** --exclude=.gitignore ./ #{scheduler_dir}"
 
-  bundle "install --binstubs --without development test --path vendor/bundle", :env => env
+  # Create a wrapper for the rake tasks of the Rails app
+  erb :dest => "#{install_dir}/bin/codem-rake",
+    :source => "bundle_exec_wrapper.erb",
+    :mode => 0755,
+    :vars => {:command => 'rake "$@"', :install_dir => install_dir}
+
+  # Create a wrapper for the rails command, useful for e.g. `rails console`
+  erb :dest => "#{install_dir}/bin/codem-rails",
+    :source => "bundle_exec_wrapper.erb",
+    :mode => 0755,
+    :vars => {:command => 'rails "$@"', :install_dir => install_dir}
 end
 
