@@ -37,3 +37,7 @@ base_dir './local'
 # ------------------------------
 # solaris_compiler 'gcc'
 # build_retries 5
+
+# Do not create dmg's
+# -------------------
+build_dmg false
