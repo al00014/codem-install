@@ -1,5 +1,6 @@
 name "codem-transcoder"
 default_version "584ac526788f2e4f27ceb74fd5f8a997d8fd6e81"
+always_build 1
 
 dependency "rsync"
 dependency "nodejs"
@@ -24,6 +25,8 @@ build do
   erb :dest => "#{install_dir}/config/config.json",
     :source => "config.json.erb",
     :mode => 0755,
-    :vars => {:log_dir => "#{install_dir}/log", :db_dir => "#{install_dir}/db"}
+    :vars => { :log_dir => "#{install_dir}/log", 
+               :db_dir => "#{install_dir}/db",
+               :bin_dir => "#{install_dir}/embedded/bin" }
 end
 
