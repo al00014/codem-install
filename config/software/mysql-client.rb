@@ -18,11 +18,9 @@
 name "mysql-client"
 default_version "5.5.37"
 
-dependencies [
-                "openssl",
-                "zlib",
-                "ncurses",
-             ]
+dependency "openssl"
+dependency "zlib"
+dependency "ncurses"
 
 source  :url => "http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.37.tar.gz",
         :md5 => "bf1d80c66d4822ec6036300399a33c03"
@@ -58,7 +56,7 @@ build do
             "-DOPENSSL_LIBRARIES:FILEPATH=#{install_dir}/embedded/lib/libssl.dylib",
             "-DWITH_ZLIB=system",
             "-DZLIB_INCLUDE_DIR:PATH=#{install_dir}/embedded/include",
-            "-DZLIB_LIBRARY:FILEPATH=#{install_dir}/embedded/lib/libz.so",
+            "-DZLIB_LIBRARY:FILEPATH=#{install_dir}/embedded/lib/libz.dylib",
             "-DCRYPTO_LIBRARY:FILEPATH=#{install_dir}/embedded/lib/libcrypto.dylib",
             ".",
            ].join(" "), :env => env
