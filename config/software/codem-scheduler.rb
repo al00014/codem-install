@@ -4,16 +4,17 @@ default_version "f9340d57450c04340e64d47f7c75335e45e80f08"
 dependency "ruby"
 dependency "rubygems"
 dependency "bundler"
-dependency "libxml2"
-dependency "libxslt"
-dependency "openssl"
+dependency "nokogiri"
 dependency "mysql-client"
+dependency "mysql2-gem"
 dependency "rsync"
 
 env = {
   "LDFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
   "CFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
   "LD_RUN_PATH" => "#{install_dir}/embedded/lib",
+  "GEM_HOME" => "#{install_dir}/embedded/lib/ruby/gems/2.1.0",
+  "GEM_PATH" => "#{install_dir}/embedded/lib/ruby/gems/2.1.0"
 }
 
 source :git => 'https://github.com/madebyhiro/codem-schedule.git'
@@ -22,12 +23,8 @@ build do
   scheduler_dir = "#{install_dir}/codem-scheduler"
 
   # Install gems without dev and test
-  bundle "config build.nokogiri --with-xml2-lib=#{install_dir}/embedded/lib"
-  bundle "config build.nokogiri --with-xml2-include=#{install_dir}/embedded/include"
-  bundle "config build.nokogiri --with-xslt-lib=#{install_dir}/embedded/lib"
-  bundle "config build.nokogiri --with-xslt-include=#{install_dir}/embedded/include"
-
-  bundle "install --binstubs --without development test --path=#{install_dir}/embedded/service/gem", :env => env
+  gem "install bundler", :env => env
+  bundle "install --binstubs --without development test", :env => env
 
   # Generate destination and copy the actual code to the correct location
   command "mkdir -p #{scheduler_dir}"
