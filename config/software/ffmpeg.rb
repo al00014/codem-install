@@ -8,6 +8,7 @@ dependency  "yasm"
 dependency  "zlib"
 dependency  "libx264"
 dependency  "libfaac"
+dependency  "libxvid"
 dependency  "lame"
 
 relative_path "#{name}-#{version}"
@@ -33,7 +34,8 @@ build do
                       "--enable-libx264",
                       "--enable-libfaac",
                       "--enable-libmp3lame",
-                      "--prefix=#{install_dir}/embedded",
+                      "--enable-libxvid",
+                      "--prefix=#{prefix}",
                       "--yasmexe=#{install_dir}/embedded/bin/yasm"]
   command configure_command.join(" ")
   command "make -j #{max_build_jobs}", :env => env
