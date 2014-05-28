@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-# Perform necessary codem removal steps
-# after package is uninstalled.
-#
-
-echo "codem has been uninstalled!"
-
-exit 0
