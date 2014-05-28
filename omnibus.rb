@@ -41,3 +41,6 @@
 # Do not create dmg's
 # -------------------
 build_dmg false
+
+# Do not append timestamps to generated files
+append_timestamp false
