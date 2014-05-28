@@ -23,12 +23,17 @@ source :git => 'https://github.com/madebyhiro/codem-schedule.git'
 build do
   scheduler_dir = "#{install_dir}/codem-scheduler"
 
+  # sed -i works diffently on BSD and Linux, see
+  # http://stackoverflow.com/questions/5694228/sed-in-place-flag-that-works-both-on-mac-bsd-and-linux
+  #
   # Convert Gemfile to sqlite3
-  command "sed -i '' 's/mysql2/sqlite3/g' Gemfile"
+  command "sed -i.bak 's/mysql2/sqlite3/g' Gemfile"
   # Convert database.yml to sqlite3
-  command "sed -i '' 's/mysql2/sqlite3/g' config/database.yml"
+  command "sed -i.bak 's/mysql2/sqlite3/g' config/database.yml"
   # Ensure Rails in production is serving static assets
-  command "sed -i '' 's/config.serve_static_assets = false/config.serve_static_assets = true/g' config/environments/production.rb"
+  command "sed -i.bak 's/config.serve_static_assets = false/config.serve_static_assets = true/g' config/environments/production.rb"
+  # Cleanup .bak
+  command "rm Gemfile.bak config/database.yml.bak config/environments/production.rb.bak"
 
   # Install gems without dev and test
   gem "install bundler", :env => env
