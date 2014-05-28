@@ -1,9 +1,8 @@
-name 'mysql2-gem'
-default_version '0.3.6'
+name 'json-gem'
+default_version '1.8.1'
 
 dependency "ruby"
 dependency "rubygems"
-dependency "openssl"
 
 env = {
   "LDFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
@@ -17,8 +16,6 @@ env = {
 
 build do
   gem ["install",
-       "mysql2",
-       "-v #{version}",
-       "--",
-       "--with-mysql-config=#{install_dir}/embedded/bin/mysql_config"].join(' '), :env => env
+       "json",
+       "-v #{version}"].join(' '), :env => env
 end

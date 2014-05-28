@@ -61,7 +61,5 @@ build do
             ".",
            ].join(" "), :env => env
 
-  %w{libmysql client include scripts}.each do |target|
-    command "make -j #{max_build_jobs} install", :env => env, :cwd => "#{project_dir}/#{target}"
-  end
+  command "make -j #{max_build_jobs} install", :env => env
 end

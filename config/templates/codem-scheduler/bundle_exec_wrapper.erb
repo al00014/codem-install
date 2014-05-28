@@ -1,6 +1,8 @@
 #!/bin/bash
 
 export PATH=<%= install_dir %>/bin:<%= install_dir %>/embedded/bin:$PATH
+export GEM_PATH=<%= install_dir %>/embedded/lib/ruby/gems/2.1.0
+export GEM_HOME=<%= install_dir %>/embedded/lib/ruby/gems/2.1.0
 
 # default to RAILS_ENV=production
 if [[ -z $RAILS_ENV ]]; then

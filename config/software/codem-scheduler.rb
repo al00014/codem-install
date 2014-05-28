@@ -7,6 +7,7 @@ dependency "bundler"
 dependency "nokogiri"
 dependency "mysql-client"
 dependency "mysql2-gem"
+dependency "json-gem"
 dependency "rsync"
 
 env = {
