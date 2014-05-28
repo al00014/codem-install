@@ -52,7 +52,7 @@ build do
   bundle "exec rake db:migrate", :env => assets_env
 
   # Init log file
-  command "touch log/production.log && chmod 0666 log/production"
+  command "touch log/production.log && chmod 0666 log/production.log"
 
   # Generate destination and copy the actual code to the correct location
   command "mkdir -p #{scheduler_dir}"
