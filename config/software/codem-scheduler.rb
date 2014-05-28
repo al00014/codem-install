@@ -51,6 +51,9 @@ build do
   bundle "exec rake db:create",  :env => assets_env
   bundle "exec rake db:migrate", :env => assets_env
 
+  # Init log file
+  command "touch log/production.log && chmod 0666 log/production"
+
   # Generate destination and copy the actual code to the correct location
   command "mkdir -p #{scheduler_dir}"
   command "#{install_dir}/embedded/bin/rsync -a --delete --exclude=.git/*** --exclude=.gitignore ./ #{scheduler_dir}"
