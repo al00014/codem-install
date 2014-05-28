@@ -35,8 +35,12 @@ build do
   # Cleanup .bak
   command "rm Gemfile.bak config/database.yml.bak config/environments/production.rb.bak"
 
-  # Install gems without dev and test
-  gem "install bundler", :env => env
+  # Install required gems, including a JS compiler for platforms that need it
+  if platform != "mac_os_x"
+    command "sed -i.bak 's/gem \"therubyracer\"//g' Gemfile"
+    command "echo 'gem \"therubyracer\"' >> Gemfile"
+    command "rm Gemfile.bak"
+  end
   bundle "install --without development test", :env => env
 
   assets_env = {
