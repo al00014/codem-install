@@ -12,6 +12,15 @@ source :git => 'https://github.com/madebyhiro/codem-transcode.git'
 build do
   transcoder_dir = "#{install_dir}/codem-transcoder"
 
+  # npm provided by Ubuntu is outdated, we need npm > 1.1.4
+  if platform == "ubuntu"
+    command "sudo apt-get update"
+    command "sudo apt-get install -y python-software-properties python g++ make"
+    command "sudo add-apt-repository ppa:chris-lea/node.js"
+    command "sudo apt-get update"
+    command "sudo apt-get install nodejs"
+  end
+
   command "npm install"
 
   # Create directories needed for the provided config file
