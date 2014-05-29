@@ -23,21 +23,21 @@ env = {
 }
 
 build do
-  configure_command = ["./configure",
-                      "--enable-nonfree",
-                      "--enable-pthreads",
-                      "--enable-gpl",
-                      "--enable-version3",
-                      "--enable-hardcoded-tables",
-                      "--enable-avresample",
-                      "--enable-vda",
-                      "--enable-libx264",
-                      "--enable-libfaac",
-                      "--enable-libmp3lame",
-                      "--enable-libxvid",
-                      "--prefix=#{prefix}",
-                      "--yasmexe=#{install_dir}/embedded/bin/yasm"]
-  command configure_command.join(" ")
+  command ["./configure",
+           "--enable-static",
+           "--enable-nonfree",
+           "--enable-pthreads",
+           "--enable-gpl",
+           "--enable-version3",
+           "--enable-hardcoded-tables",
+           "--enable-avresample",
+           "--enable-vda",
+           "--enable-libx264",
+           "--enable-libfaac",
+           "--enable-libmp3lame",
+           "--enable-libxvid",
+           "--prefix=#{prefix}",
+           "--yasmexe=#{install_dir}/embedded/bin/yasm"], :env => env
   command "make -j #{max_build_jobs}", :env => env
   command "make -j #{max_build_jobs} install", :env => env
 end

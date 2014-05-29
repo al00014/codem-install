@@ -1,12 +1,10 @@
-name "lame"
-default_version "3.99.5"
+name "mp4v2"
+default_version "2.0.0"
 
-dependency "ncurses"
+source :url => "https://mp4v2.googlecode.com/files/mp4v2-2.0.0.tar.bz2",
+       :md5 => "c91f06711225b34b4c192c9114887b14"
 
-source :url => "http://downloads.sourceforge.net/project/lame/lame/3.99/lame-#{version}.tar.gz",
-       :md5 => "84835b313d4a8b68f5349816d33e07ce"
-
-relative_path "lame-#{version}"
+relative_path "mp4v2-#{version}"
 
 env = {
   "LDFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
@@ -15,12 +13,9 @@ env = {
 }
 
 build do
-  command "sudo apt-get -y install libmp3lame-dev" if platform == "ubuntu"
-
   command ["./configure",
            "--prefix=#{install_dir}/embedded",
-           "--enable-shared",
-          ]
+          ], :env => env
   command "make -j #{max_build_jobs}", :env => env
   command "make install", :env => env
 end

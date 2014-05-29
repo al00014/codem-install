@@ -15,11 +15,10 @@ env = {
 }
 
 build do
-  command [ "./configure", "--prefix=#{install_dir}/embedded",
-          "--enable-shared",
+  command ["./configure",
+           "--prefix=#{install_dir}/embedded",
+           "--enable-shared",
           ], :env => env
   command "make -j #{max_build_jobs}", :env => env
   command "make -j #{max_build_jobs} install", :env => env
-  command "cp #{install_dir}/embedded/bin/x264 #{install_dir}/bin"
-
 end

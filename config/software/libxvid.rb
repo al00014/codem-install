@@ -14,6 +14,8 @@ env = {
 }
 
 build do
+  command "sudo apt-get -y install libxvidcore-dev" if platform == "ubuntu"
+
   command [ "./configure",
             "--disable-assembly",
             "--enable-shared",
