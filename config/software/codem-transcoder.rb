@@ -21,6 +21,13 @@ build do
     command "sudo apt-get install nodejs"
   end
 
+  # Cent OS doesn't have npm at all
+  if platform == "centos"
+    command "sudo rpm --import https://fedoraproject.org/static/0608B895.txt"
+    command "sudo rpm -Uvh http://download-i2.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm ; /bin/true"
+    command "sudo yum install -y npm --enablerepo=epel"
+  end
+
   command "npm install"
 
   # Create directories needed for the provided config file
