@@ -12,7 +12,6 @@ env = {
   "LD_RUN_PATH" => "#{install_dir}/embedded/lib"
 }
 
-
 build do
   command ["./configure",
            "--prefix=#{install_dir}/embedded"

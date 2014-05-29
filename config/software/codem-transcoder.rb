@@ -1,6 +1,5 @@
 name "codem-transcoder"
 default_version "584ac526788f2e4f27ceb74fd5f8a997d8fd6e81"
-always_build 1
 
 dependency "rsync"
 dependency "nodejs"

@@ -1,4 +1,4 @@
-name "libxvid"
+name            "libxvid"
 default_version "1.3.2"
 
 source :url => "http://downloads.xvid.org/downloads/xvidcore-1.3.2.tar.gz",

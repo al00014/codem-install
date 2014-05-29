@@ -1,4 +1,4 @@
-name 'sqlite-gem'
+name             'sqlite-gem'
 default_version '1.3.9'
 
 dependency "ruby"

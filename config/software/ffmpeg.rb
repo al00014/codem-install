@@ -13,12 +13,9 @@ dependency  "lame"
 
 relative_path "#{name}-#{version}"
 
-prefix="#{install_dir}/embedded"
-libdir="#{prefix}/lib"
-
 env = {
-  "LDFLAGS" => "-L#{libdir} -I#{prefix}/include",
-  "CFLAGS" => "-L#{libdir} -I#{prefix}/include -fPIC",
+  "LDFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
+  "CFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include -fPIC",
   "LD_RUN_PATH" => libdir
 }
 

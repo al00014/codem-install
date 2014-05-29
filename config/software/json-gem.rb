@@ -1,4 +1,4 @@
-name 'json-gem'
+name            'json-gem'
 default_version '1.8.1'
 
 dependency "ruby"

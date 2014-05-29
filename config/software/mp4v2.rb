@@ -1,4 +1,4 @@
-name "mp4v2"
+name            "mp4v2"
 default_version "2.0.0"
 
 source :url => "https://mp4v2.googlecode.com/files/mp4v2-2.0.0.tar.bz2",

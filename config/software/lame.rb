@@ -1,4 +1,4 @@
-name "lame"
+name            "lame"
 default_version "3.99.5"
 
 dependency "ncurses"

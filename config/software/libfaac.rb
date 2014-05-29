@@ -1,4 +1,4 @@
-name "libfaac"
+name            "libfaac"
 default_version "1.28"
 
 source :url => "http://downloads.sourceforge.net/faac/faac-#{version}.tar.gz",
@@ -13,7 +13,6 @@ env = {
   "CFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
   "LD_RUN_PATH" => "#{install_dir}/embedded/lib"
 }
-
 
 build do
   command "sudo apt-get -y install libfaac-dev" if platform == "ubuntu"

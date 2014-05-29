@@ -1,4 +1,4 @@
-name "libx264"
+name            "libx264"
 default_version "stable"
 
 dependency "yasm"
