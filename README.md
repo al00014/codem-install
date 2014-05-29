@@ -1,7 +1,7 @@
 codem Omnibus project
 =====================
 This project creates full-stack platform-specific packages for
-`codem`!
+`codem`!  Download any of the resulting packages at [Codem](http://www.transcodem.com/installation).
 
 Installation
 ------------
