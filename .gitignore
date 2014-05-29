@@ -11,3 +11,4 @@ vendor/cookbooks
 build.txt
 local/
 .kitchen/
+*.lock
