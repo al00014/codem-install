@@ -16,7 +16,7 @@ relative_path "#{name}-#{version}"
 env = {
   "LDFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
   "CFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include -fPIC",
-  "LD_RUN_PATH" => libdir
+  "LD_RUN_PATH" => "#{install_dir}/embedded/lib"
 }
 
 build do
@@ -33,7 +33,7 @@ build do
            "--enable-libfaac",
            "--enable-libmp3lame",
            "--enable-libxvid",
-           "--prefix=#{prefix}",
+           "--prefix=#{install_dir}/embedded",
            "--yasmexe=#{install_dir}/embedded/bin/yasm"], :env => env
   command "make -j #{max_build_jobs}", :env => env
   command "make -j #{max_build_jobs} install", :env => env
