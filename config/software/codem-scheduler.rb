@@ -1,5 +1,5 @@
 name "codem-scheduler"
-default_version "f9340d57450c04340e64d47f7c75335e45e80f08"
+default_version "601e47114acbd5ab89504a6f6099220fd5e17d72"
 
 dependency "ruby"
 dependency "rubygems"
